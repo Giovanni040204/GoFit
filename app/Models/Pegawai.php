@@ -23,7 +23,5 @@ class Pegawai extends Model
         'jenis_kelamin_pegawai',
         'tanggal_lahir_pegawai',
         'alamat_pegawai',
-        'username',
-        'password',
     ];
 }
