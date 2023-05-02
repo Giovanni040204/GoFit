@@ -15,7 +15,7 @@ class PromoController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $promo = Promo::where('judul_promo','LIKE','%'.$request->search.'%')
+            $promo = Promo::latest()->where('judul_promo','LIKE','%'.$request->search.'%')
                         ->orWhere('jenis_promo','LIKE','%'.$request->search.'%')
                         ->orWhere('isi_promo','LIKE','%'.$request->search.'%')
                         ->paginate(5);
@@ -33,7 +33,8 @@ class PromoController extends Controller
     */
     public function create()
     {
-        return view('promo.create');
+        $jenisPromo = ['Kelas Reguler','Kelas Paket'];
+        return view('promo.create', compact('jenisPromo'));
     }
 
     /**
@@ -63,7 +64,8 @@ class PromoController extends Controller
 
     public function edit($id){
         $promo = Promo::whereId($id)->first();
-        return view('promo.edit')->with('promo', $promo);
+        $jenisPromo = ['Kelas Reguler','Kelas Paket'];
+        return view('promo.edit', compact('jenisPromo'))->with('promo', $promo);
     }    
 
     public function update(Request $request, $id){

@@ -15,7 +15,7 @@ class MemberController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $member = Member::where('nama_member','LIKE','%'.$request->search.'%')
+            $member = Member::latest()->where('nama_member','LIKE','%'.$request->search.'%')
                         ->orWhere('email_member','LIKE','%'.$request->search.'%')
                         ->orWhere('telepon_member','LIKE','%'.$request->search.'%')
                         ->orWhere('jenis_kelamin_member','LIKE','%'.$request->search.'%')
@@ -37,7 +37,8 @@ class MemberController extends Controller
     */
     public function create()
     {
-        return view('member.create');
+        $jenisKelamin = ['Laki-laki','Perempuan'];
+        return view('member.create', compact('jenisKelamin'));
     }
 
     /**
@@ -84,7 +85,8 @@ class MemberController extends Controller
 
     public function edit($id){
         $member = Member::whereId($id)->first();
-        return view('member.edit')->with('member', $member);
+        $jenisKelamin = ['Laki-laki','Perempuan'];
+        return view('member.edit', compact('jenisKelamin'))->with('member', $member);
     }    
 
     public function update(Request $request, $id){

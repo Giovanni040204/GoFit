@@ -15,7 +15,7 @@ class PegawaiController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $pegawai = Pegawai::where('nama_pegawai','LIKE','%'.$request->search.'%')
+            $pegawai = Pegawai::latest()->where('nama_pegawai','LIKE','%'.$request->search.'%')
                         ->orWhere('peran_pegawai','LIKE','%'.$request->search.'%')
                         ->orWhere('email_pegawai','LIKE','%'.$request->search.'%')
                         ->orWhere('telepon_pegawai','LIKE','%'.$request->search.'%')
@@ -37,7 +37,8 @@ class PegawaiController extends Controller
     */
     public function create()
     {
-        return view('pegawai.create');
+        $jenisKelamin = ['Laki-laki','Perempuan'];
+        return view('pegawai.create', compact('jenisKelamin'));
     }
 
     /**
@@ -59,8 +60,16 @@ class PegawaiController extends Controller
             'alamat_pegawai' => 'required'
         ]);
 
+        $year = date('Y');
+        $month = date('m');
+        $ym = $year.$month;
+        $pegawaiAkhir = Pegawai::orderby('id', 'desc')->first();
+        $nomorUrut = $pegawaiAkhir ? $pegawaiAkhir->id : 0;        
+        $nomor_pegawai = $ym . $nomorUrut + 1;          
+
         //Fungsi Simpan Data ke dalam Database
         Pegawai::create([
+            'nomor_pegawai' => $nomor_pegawai,
             'nama_pegawai' => $request->nama_pegawai,
             'peran_pegawai' => $request->peran_pegawai,
             'email_pegawai' => $request->email_pegawai,
@@ -75,7 +84,8 @@ class PegawaiController extends Controller
 
     public function edit($id){
         $pegawai = Pegawai::whereId($id)->first();
-        return view('pegawai.edit')->with('pegawai', $pegawai);
+        $jenisKelamin = ['Laki-laki','Perempuan'];
+        return view('pegawai.edit', compact('jenisKelamin'))->with('pegawai', $pegawai);
     }    
 
     public function update(Request $request, $id){

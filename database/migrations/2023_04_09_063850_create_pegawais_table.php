@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('pegawais', function (Blueprint $table) {
             $table->id();
+            $table->string('nomor_pegawai');
             $table->string('nama_pegawai');
             $table->string('peran_pegawai');
             $table->string('email_pegawai');

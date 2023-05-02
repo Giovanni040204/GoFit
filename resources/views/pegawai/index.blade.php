@@ -55,6 +55,7 @@
                                 <table class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
+                                            <th class="text-center">Nomor Pegawai</th>
                                             <th class="text-center">Nama Pegawai</th>
                                             <th class="text-center">Peran Pegawai</th>
                                             <th class="text-center">Email Pegawai</th>
@@ -68,6 +69,7 @@
                                     <tbody>
                                         @forelse ($pegawai as $item)
                                         <tr>
+                                            <td class="text-center">{{$item->nomor_pegawai }}</td>
                                             <td class="text-center">{{$item->nama_pegawai }}</td>
                                             <td class="text-center">{{$item->peran_pegawai }}</td>
                                             <td class="text-center">{{$item->email_pegawai }}</td>

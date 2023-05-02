@@ -55,6 +55,7 @@
                                 <table class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
+                                            <th class="text-center">Nomor Instruktur</th>
                                             <th class="text-center">Nama Instruktur</th>
                                             <th class="text-center">Email Instruktur</th>
                                             <th class="text-center">Telepon Instruktur</th>
@@ -67,6 +68,7 @@
                                     <tbody>
                                         @forelse ($instruktur as $item)
                                         <tr>
+                                            <td class="text-center">{{$item->nomor_instruktur }}</td>
                                             <td class="text-center">{{$item->nama_instruktur }}</td>
                                             <td class="text-center">{{$item->email_instruktur }}</td>
                                             <td class="text-center">{{$item->telepon_instruktur }}</td>

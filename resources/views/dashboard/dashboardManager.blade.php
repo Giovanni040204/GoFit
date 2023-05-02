@@ -43,26 +43,26 @@
                             <img src="https://img2.pngdownload.id/20180330/lfw/kisspng-computer-icons-manager-management-chief-executive-management-5abde2ea2648f6.9693654915223938341568.jpg" class="img-circle elevation-2" alt="User Image">
                         </div>
                     <div class="info">
-                        <a href="#" class="d-block">Manager Operasional</a>
+                        <a href="#" class="d-block text-dark">Manager Operasional</a>
                     </div>
                 </div>
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ url('kelas') }}" class="nav-link">
+                            <a href="{{ url('kelas') }}" class="nav-link text-dark">
                                 <i class="nav-icon fa-solid fa-landmark"></i>
                                 <p>Mengelola Data Kelas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('jadwal') }}" class="nav-link">
+                            <a href="{{ url('jadwal') }}" class="nav-link text-dark">
                                 <i class="nav-icon fa-solid fa-calendar-days"></i>
                                 <p>Mengelola Data Jadwal</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('logout') }}" class="nav-link">
+                            <a href="{{ url('logout') }}" class="nav-link text-dark">
                                 <i class="nav-icon fa-solid fa-right-from-bracket"></i>
                                 <p>Logout</p>
                             </a>

@@ -17,7 +17,7 @@ class JadwalController extends Controller
     public function index()
     {
         //get posts
-        $jadwal = Jadwal::paginate(10);
+        $jadwal = Jadwal::latest()->paginate(10);
         //render view with posts
         return view('jadwal.index', compact('jadwal'));
     }

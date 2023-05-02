@@ -63,9 +63,19 @@
                                     <div class="form-group col-md-12">
                                         <label class="font-weight-bold">Jenis Kelamin Instruktur</label>
                                         <select class="form-control  @error('jenis_kelamin_instruktur') is-invalid @enderror" name="jenis_kelamin_instruktur" id="jenis_kelamin_instruktur" value="{{ $instruktur->jenis_kelamin_instruktur }}">
-                                            <option value="" disabled selected hidden>{{ $instruktur->jenis_kelamin_instruktur }}</option>
-                                            <option value="Laki-laki">Laki-laki</option>
-                                            <option value="Perempuan">Perempuan</option>
+                                            @foreach ($jenisKelamin as $item)
+                                            <?php
+                                                if($instruktur->jenis_kelamin_instruktur == $item){
+                                                    ?>
+                                                        <option value="{{ $item }}" selected>{{ $item }}</option>
+                                                    <?php
+                                                }else{
+                                                    ?>
+                                                        <option value="{{ $item }}">{{ $item }}</option>
+                                                    <?php
+                                                }
+                                            ?>  
+                                            @endforeach
                                         </select>
                                         @error('jenis_kelamin_instruktur')
                                         <div class="invalid-feedback">

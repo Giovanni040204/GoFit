@@ -16,7 +16,7 @@ class KelasController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $kelas = Kelas::where('nama_kelas','LIKE','%'.$request->search.'%')
+            $kelas = Kelas::latest()->where('nama_kelas','LIKE','%'.$request->search.'%')
                         ->orWhere('harga_kelas','LIKE','%'.$request->search.'%')
                         ->paginate(5);
         }else{

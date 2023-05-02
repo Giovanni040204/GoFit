@@ -16,7 +16,7 @@ class Instruktur extends Model
     */
     
     protected $fillable = [
-        'id',
+        'nomor_instruktur',
         'nama_instruktur',
         'email_instruktur',
         'telepon_instruktur',

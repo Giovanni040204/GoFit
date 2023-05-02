@@ -16,12 +16,13 @@ class InstrukturController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $instruktur = Instruktur::where('nama_instruktur','LIKE','%'.$request->search.'%')
+            $instruktur = Instruktur::latest()->where('nama_instruktur','LIKE','%'.$request->search.'%')
                             ->orWhere('email_instruktur','LIKE','%'.$request->search.'%')
                             ->orWhere('telepon_instruktur','LIKE','%'.$request->search.'%')
                             ->orWhere('jenis_kelamin_instruktur','LIKE','%'.$request->search.'%')
                             ->orWhere('tanggal_lahir_instruktur','LIKE','%'.$request->search.'%')
                             ->orWhere('alamat_instruktur','LIKE','%'.$request->search.'%')
+                            ->orWhere('nomor_instruktur','LIKE','%'.$request->search.'%')
                             ->paginate(5);
         }else{
             $instruktur = Instruktur::latest()->paginate(5);
@@ -37,7 +38,8 @@ class InstrukturController extends Controller
     */
     public function create()
     {
-        return view('instruktur.create');
+        $jenisKelamin = ['Laki-laki','Perempuan'];
+        return view('instruktur.create', compact('jenisKelamin'));
     }
 
     /**
@@ -58,8 +60,16 @@ class InstrukturController extends Controller
             'alamat_instruktur' => 'required'
         ]);
 
+        $year = date('Y');
+        $month = date('m');
+        $ym = $year.$month.'.';
+        $instrukturAkhir = Instruktur::orderby('id', 'desc')->first();
+        $nomorUrut = $instrukturAkhir ? $instrukturAkhir->id : 0;        
+        $nomor_instruktur = $ym . $nomorUrut + 1;        
+
         //Fungsi Simpan Data ke dalam Database
         Instruktur::create([
+            'nomor_instruktur' => $nomor_instruktur,
             'nama_instruktur' => $request->nama_instruktur,
             'email_instruktur' => $request->email_instruktur,
             'telepon_instruktur' => $request->telepon_instruktur,
@@ -73,7 +83,8 @@ class InstrukturController extends Controller
 
     public function edit($id){
         $instruktur = Instruktur::whereId($id)->first();
-        return view('instruktur.edit')->with('instruktur', $instruktur);
+        $jenisKelamin = ['Laki-laki','Perempuan'];
+        return view('instruktur.edit', compact('jenisKelamin'))->with('instruktur', $instruktur);
     }    
 
     public function update(Request $request, $id){

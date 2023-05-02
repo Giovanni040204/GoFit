@@ -62,7 +62,7 @@
                                             <th class="text-center">Jenis Kelamin Member</th>
                                             <th class="text-center">Tanggal Lahir Member</th>
                                             <th class="text-center">Alamat Member</th>
-                                            <th class="text-center">Password Member</th>
+                                            {{-- <th class="text-center">Password Member</th> --}}
                                             <th class="text-center">Aksi</th>
                                             <th class="text-center">Reset Password</th>
                                         </tr>
@@ -77,7 +77,7 @@
                                             <td class="text-center">{{$item->jenis_kelamin_member }}</td>
                                             <td class="text-center">{{$item->tanggal_lahir_member }}</td>
                                             <td class="text-center">{{$item->alamat_member }}</td>
-                                            <td class="text-center">{{$item->password}}</td>
+                                            {{-- <td class="text-center">{{$item->password}}</td> --}}
                                             <td class="text-center">
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('member.destroy', $item->id) }}" method="POST">
                                                     <a href="{{ route('member.edit', $item->id) }}" class="btn btn-sm btn-primary">EDIT</a>

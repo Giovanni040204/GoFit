@@ -46,8 +46,9 @@
                                         <label class="font-weight-bold">Jenis Promo</label>
                                         <select class="form-control  @error('jenis_promo') is-invalid @enderror" name="jenis_promo" value="{{ old('jenis_promo') }}">
                                             <option value="" disabled selected hidden>Pilih Jenis Promo</option>
-                                            <option value="Kelas Reguler">Kelas Reguler</option>
-                                            <option value="Kelas Paket">Kelas Paket</option>
+                                            @foreach ($jenisPromo as $item)
+                                                <option value="{{ $item }}">{{ $item }}</option>
+                                            @endforeach
                                         </select>
                                         @error('jenis_promo')
                                         <div class="invalid-feedback">

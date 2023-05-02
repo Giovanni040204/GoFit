@@ -43,20 +43,20 @@
                             <img src="https://img2.pngdownload.id/20180402/ufe/kisspng-cashier-computer-icons-cash-register-cashier-5ac234b84d3247.2009979915226769203162.jpg" class="img-circle elevation-2" alt="User Image">
                         </div>
                     <div class="info">
-                        <a href="#" class="d-block">Kasir</a>
+                        <a href="#" class="d-block text-dark">Kasir</a>
                     </div>
                 </div>
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ url('member') }}" class="nav-link">
+                            <a href="{{ url('member') }}" class="nav-link text-dark">
                                 <i class="nav-icon fa-solid fa-user-group"></i>
                                 <p>Mengelola Data Member</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('logout') }}" class="nav-link">
+                            <a href="{{ url('logout') }}" class="nav-link text-dark">
                                 <i class="nav-icon fa-solid fa-right-from-bracket"></i>
                                 <p>Logout</p>
                             </a>

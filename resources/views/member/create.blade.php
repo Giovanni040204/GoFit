@@ -64,8 +64,9 @@
                                         <label class="font-weight-bold">Jenis Kelamin Member</label>
                                         <select class="form-control  @error('jenis_kelamin_member') is-invalid @enderror" name="jenis_kelamin_member" id="jenis_kelamin_member" value="{{ old('jenis_kelamin_Instruktur') }}">
                                             <option value="" disabled selected hidden>Pilih Jenis Kelamin</option>
-                                            <option value="Laki-laki">Laki-laki</option>
-                                            <option value="Perempuan">Perempuan</option>
+                                            @foreach ($jenisKelamin as $item)
+                                                <option value="{{ $item }}">{{ $item }}</option>
+                                            @endforeach
                                         </select>
                                         @error('jenis_kelamin_member')
                                         <div class="invalid-feedback">
