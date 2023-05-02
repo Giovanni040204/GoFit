@@ -39,7 +39,7 @@
                                     <div class="col-sm-6">
                                         <ol class="breadcrumb float-sm-right">
                                             <form action="{{ route('member.index') }}" class="form-inline" method="GET">
-                                                <input type="search" name="search" class="form-control float-right" placeholder="Masukan Nama Member">
+                                                <input type="search" name="search" class="form-control float-right" placeholder="Masukan Data Member">
                                                 <div class="input-group-append">
                                                     <button type="submit" class="btn btn-default">
                                                         <i class="fas fa-search"></i>
@@ -64,7 +64,7 @@
                                             <th class="text-center">Alamat Member</th>
                                             <th class="text-center">Password Member</th>
                                             <th class="text-center">Aksi</th>
-                                            <th class="text-center">Password</th>
+                                            <th class="text-center">Reset Password</th>
                                         </tr>
                                     </thead>
                                     <tbody>

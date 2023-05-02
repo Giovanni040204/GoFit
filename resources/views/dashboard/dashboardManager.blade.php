@@ -21,69 +21,29 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+                    <a class="nav-link" data-widget="pushmenu" href="" role="button">
                         <i class="fas fa-bars"></i>
-                    </a>
-                </li>
-            </ul>
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Navbar Search -->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
             </ul>
             </nav>
             <!-- /.navbar -->
             <!-- Main Sidebar Container -->
-            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <aside class="main-sidebar sidebar-dark-primary bg-danger elevation-4">
                 <!-- Brand Logo -->
                 <a href="#" class="brand-link">
-                    <img src=" {{ asset('img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                    <span class="brand-text font-weight-light">GoFit</span>
+                    <img src="https://i.pinimg.com/originals/dc/0e/36/dc0e36c68fe8c0ab31bc8241f081c6b6.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light" style="font-family: algerian;">Go-Fit</span>
                 </a>
                 <!-- Sidebar -->
                 <div class="sidebar">
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                            <img src="https://img2.pngdownload.id/20180330/lfw/kisspng-computer-icons-manager-management-chief-executive-management-5abde2ea2648f6.9693654915223938341568.jpg" class="img-circle elevation-2" alt="User Image">
                         </div>
                     <div class="info">
-                        <a href="#" class="d-block">Giovanni</a>
-                    </div>
-                </div>
-                <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
+                        <a href="#" class="d-block">Manager Operasional</a>
                     </div>
                 </div>
                 <!-- Sidebar Menu -->
@@ -91,19 +51,19 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
                             <a href="{{ url('kelas') }}" class="nav-link">
-                                <i class="nav-icon far fa-circle"></i>
+                                <i class="nav-icon fa-solid fa-landmark"></i>
                                 <p>Mengelola Data Kelas</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('jadwal') }}" class="nav-link">
-                                <i class="nav-icon far fa-circle"></i>
+                                <i class="nav-icon fa-solid fa-calendar-days"></i>
                                 <p>Mengelola Data Jadwal</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('logout') }}" class="nav-link">
-                                <i class="nav-icon far fa-circle"></i>
+                                <i class="nav-icon fa-solid fa-right-from-bracket"></i>
                                 <p>Logout</p>
                             </a>
                         </li>
@@ -123,7 +83,7 @@
                 <!-- To the right -->
                 <div class="float-right d-none d-sm-inline"> 200710835</div>
                 <!-- Default to the left -->
-                <strong>Copyright &copy; {{ date('Y') }} <a href="#">AdminLTE.io</a>. </strong> All rights reserved.
+                <strong>Copyright &copy; {{ date('Y') }}
             </footer>
         </div>
         <!-- ./wrapper -->

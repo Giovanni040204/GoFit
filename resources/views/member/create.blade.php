@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label class="font-weight-bold">Email Member</label>
-                                        <input type="text" class="form-control @error('email_member') is-invalid @enderror" name="email_member" value="{{ old('email_member') }}" placeholder="Masukkan Email Member">
+                                        <input type="email" class="form-control @error('email_member') is-invalid @enderror" name="email_member" value="{{ old('email_member') }}" placeholder="Masukkan Email Member">
                                         @error('email_member')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label class="font-weight-bold">Telepon Member</label>
-                                        <input type="text" class="form-control @error('telepon_member') is-invalid @enderror" name="telepon_member" value="{{ old('telepon_member') }}" placeholder="Masukkan Telepon Member">
+                                        <input type="number" class="form-control @error('telepon_member') is-invalid @enderror" name="telepon_member" value="{{ old('telepon_member') }}" placeholder="Masukkan Telepon Member">
                                         @error('telepon_member')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -93,6 +93,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
+                                <a href="{{ route('member.index') }}" class="btn btn-sm btn-warning" style="font-size : 18px;">CANCEL</a>
                             </form>
                         </div>
                         <!-- /.card-body -->

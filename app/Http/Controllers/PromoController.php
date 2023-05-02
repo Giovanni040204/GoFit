@@ -15,7 +15,10 @@ class PromoController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $promo = Promo::where('judul_promo','LIKE','%'.$request->search.'%')->paginate(5);
+            $promo = Promo::where('judul_promo','LIKE','%'.$request->search.'%')
+                        ->orWhere('jenis_promo','LIKE','%'.$request->search.'%')
+                        ->orWhere('isi_promo','LIKE','%'.$request->search.'%')
+                        ->paginate(5);
         }else{
             $promo = Promo::latest()->paginate(10);
         }
@@ -64,6 +67,12 @@ class PromoController extends Controller
     }    
 
     public function update(Request $request, $id){
+        $this->validate($request, [
+            'judul_promo' => 'required',
+            'jenis_promo' => 'required',
+            'isi_promo' => 'required'
+        ]);
+
         $promo = Promo::whereId($id)->first();
         $promo->update($request->all());
 

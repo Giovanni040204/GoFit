@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Instruktur;
+use App\Models\Jadwal;
 use Illuminate\Http\Request;
 
 class InstrukturController extends Controller
@@ -15,7 +16,13 @@ class InstrukturController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $instruktur = Instruktur::where('nama_instruktur','LIKE','%'.$request->search.'%')->paginate(5);
+            $instruktur = Instruktur::where('nama_instruktur','LIKE','%'.$request->search.'%')
+                            ->orWhere('email_instruktur','LIKE','%'.$request->search.'%')
+                            ->orWhere('telepon_instruktur','LIKE','%'.$request->search.'%')
+                            ->orWhere('jenis_kelamin_instruktur','LIKE','%'.$request->search.'%')
+                            ->orWhere('tanggal_lahir_instruktur','LIKE','%'.$request->search.'%')
+                            ->orWhere('alamat_instruktur','LIKE','%'.$request->search.'%')
+                            ->paginate(5);
         }else{
             $instruktur = Instruktur::latest()->paginate(5);
         }
@@ -70,6 +77,16 @@ class InstrukturController extends Controller
     }    
 
     public function update(Request $request, $id){
+
+        $this->validate($request, [
+            'nama_instruktur' => 'required',
+            'email_instruktur' => 'required',
+            'telepon_instruktur' => 'required',
+            'jenis_kelamin_instruktur' => 'required',
+            'tanggal_lahir_instruktur' => 'required',
+            'alamat_instruktur' => 'required'
+        ]);
+
         $instruktur = Instruktur::whereId($id)->first();
         $instruktur->update($request->all());
 
@@ -78,7 +95,15 @@ class InstrukturController extends Controller
 
     public function destroy($id)
     {
-        Instruktur::find($id)->delete();
-        return redirect(route('instruktur.index'))->with(['success' => 'Data Berhasil Dihapus']);
+        $data = Jadwal::where('id_instruktur','=',$id)->get();
+        $cek = $data->count();
+
+        if($cek!=0){
+            return redirect(route('instruktur.index'))->with(['error' => 'Instruktur Masih Mempunyai Jadwal Kelas']);
+        }else{
+            Instruktur::find($id)->delete();
+            return redirect(route('instruktur.index'))->with(['success' => 'Data Berhasil Dihapus']);
+        }
+        
     }
 }

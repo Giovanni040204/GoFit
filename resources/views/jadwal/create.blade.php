@@ -65,13 +65,9 @@
                                         <label class="font-weight-bold">Hari</label>
                                         <select class="form-control  @error('hari') is-invalid @enderror" name="hari" id="hari" value="{{ old('hari') }}">
                                             <option value="" disabled selected hidden>Pilih Hari</option>
-                                            <option value="Senin">Senin</option>
-                                            <option value="Selasa">Selasa</option>
-                                            <option value="Rabu">Rabu</option>
-                                            <option value="Kamis">Kamis</option>
-                                            <option value="Jumat">Jumat</option>
-                                            <option value="Sabtu">Sabtu</option>
-                                            <option value="Minggu">Minggu</option>
+                                            @foreach ($hari as $item)
+                                                <option value="{{ $item }}">{{ $item }}</option>
+                                            @endforeach
                                         </select>
                                         @error('hari')
                                         <div class="invalid-feedback">
@@ -80,9 +76,18 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="font-weight-bold">Waktu</label>
-                                        <input type="time" class="form-control @error('waktu') is-invalid @enderror" name="waktu" value="{{ old('waktu') }}" placeholder="Masukan Waktu">
-                                            @error('waktu')
+                                        <label class="font-weight-bold">Waktu Mulai</label>
+                                        <input type="time" class="form-control @error('waktu_mulai') is-invalid @enderror" name="waktu_mulai" value="{{ old('waktu_mulai') }}" placeholder="Masukan Waktu Mulai">
+                                            @error('waktu_mulai')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="font-weight-bold">Waktu Selesai</label>
+                                        <input type="time" class="form-control @error('waktu_selesai') is-invalid @enderror" name="waktu_selesai" value="{{ old('waktu_selesai') }}" placeholder="Masukan Waktu Selesai">
+                                            @error('waktu_selesai')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -90,6 +95,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
+                                <a href="{{ route('jadwal.index') }}" class="btn btn-sm btn-warning" style="font-size : 18px;">CANCEL</a>
                             </form>
                         </div>
                         <!-- /.card-body -->

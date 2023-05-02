@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label class="font-weight-bold">Harga Kelas</label>
-                                        <input type="text" class="form-control @error('harga_kelas') is-invalid @enderror" name="harga_kelas" value="{{ old('harga_kelas') }}" placeholder="Masukkan Harga Kelas">
+                                        <input type="number" class="form-control @error('harga_kelas') is-invalid @enderror" name="harga_kelas" value="{{ old('harga_kelas') }}" placeholder="Masukkan Harga Kelas">
                                         @error('harga_kelas')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -53,6 +53,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
+                                <a href="{{ route('kelas.index') }}" class="btn btn-sm btn-warning" style="font-size : 18px;">CANCEL</a>
                             </form>
                         </div>
                         <!-- /.card-body -->

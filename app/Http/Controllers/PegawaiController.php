@@ -15,7 +15,14 @@ class PegawaiController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $pegawai = Pegawai::where('nama_pegawai','LIKE','%'.$request->search.'%')->paginate(5);
+            $pegawai = Pegawai::where('nama_pegawai','LIKE','%'.$request->search.'%')
+                        ->orWhere('peran_pegawai','LIKE','%'.$request->search.'%')
+                        ->orWhere('email_pegawai','LIKE','%'.$request->search.'%')
+                        ->orWhere('telepon_pegawai','LIKE','%'.$request->search.'%')
+                        ->orWhere('jenis_kelamin_pegawai','LIKE','%'.$request->search.'%')
+                        ->orWhere('tanggal_lahir_pegawai','LIKE','%'.$request->search.'%')
+                        ->orWhere('alamat_pegawai','LIKE','%'.$request->search.'%')           
+                        ->paginate(5);
         }else{
             $pegawai = Pegawai::latest()->paginate(5);
         }
@@ -31,16 +38,6 @@ class PegawaiController extends Controller
     public function create()
     {
         return view('pegawai.create');
-    }
-
-    public function search(Request $request){
-        if($request->has('search')){
-            $pegawai = Pegawai::where('nama','LIKE','%',$request->search,'%')->get();
-        }else{
-            $pegawai = Pegawai::all();
-        }
-
-        return view('pegawai.index', compact('pegawai'));
     }
 
     /**
@@ -82,6 +79,16 @@ class PegawaiController extends Controller
     }    
 
     public function update(Request $request, $id){
+        $this->validate($request, [
+            'nama_pegawai' => 'required',
+            'peran_pegawai' => 'required',
+            'email_pegawai' => 'required',
+            'telepon_pegawai' => 'required',
+            'jenis_kelamin_pegawai' => 'required',
+            'tanggal_lahir_pegawai' => 'required',
+            'alamat_pegawai' => 'required'
+        ]);
+
         $pegawai = Pegawai::whereId($id)->first();
         $pegawai->update($request->all());
 

@@ -40,11 +40,14 @@
                                             <?php
                                                 if($jadwal->id_kelas == $item->id){
                                                     ?>
-                                                        <option value="" disabled selected hidden>{{ $item->nama_kelas }}</option>
+                                                        <option value="{{ $item->id }}" selected>{{ $item->nama_kelas}}</option>
+                                                    <?php
+                                                }else{
+                                                    ?>
+                                                        <option value="{{ $item->id }}">{{ $item->nama_kelas}}</option>
                                                     <?php
                                                 }
-                                            ?>
-                                                <option value="{{ $item->id }}">{{ $item->nama_kelas}}</option>
+                                            ?>  
                                             @endforeach
                                         </select>
                                         @error('id_kelas')
@@ -60,11 +63,14 @@
                                             <?php
                                                 if($jadwal->id_instruktur == $item->id){
                                                     ?>
-                                                        <option value="" disabled selected hidden>{{ $item->nama_instruktur }}</option>
+                                                        <option value="{{ $item->id }}" selected>{{ $item->nama_instruktur }}</option>
+                                                    <?php
+                                                }else{
+                                                    ?>
+                                                        <option value="{{ $item->id }}">{{ $item->nama_instruktur }}</option>
                                                     <?php
                                                 }
                                             ?>
-                                                <option value="{{ $item->id }}">{{ $item->nama_instruktur }}</option>
                                             @endforeach
                                         </select>
                                         @error('id_instruktur')
@@ -76,14 +82,19 @@
                                     <div class="form-group col-md-6">
                                         <label class="font-weight-bold">Hari</label>
                                         <select class="form-control  @error('hari') is-invalid @enderror" name="hari" id="hari" value="{{ $jadwal->hari }}">
-                                            <option value="" disabled selected hidden>{{ $jadwal->hari }}</option>
-                                            <option value="Senin">Senin</option>
-                                            <option value="Selasa">Selasa</option>
-                                            <option value="Rabu">Rabu</option>
-                                            <option value="Kamis">Kamis</option>
-                                            <option value="Jumat">Jumat</option>
-                                            <option value="Sabtu">Sabtu</option>
-                                            <option value="Minggu">Minggu</option>
+                                            @foreach ($hari as $item)
+                                            <?php
+                                                if($jadwal->hari == $item){
+                                                    ?>
+                                                        <option value="{{ $item }}" selected>{{ $item}}</option>
+                                                    <?php
+                                                }else{
+                                                    ?>
+                                                        <option value="{{ $item }}">{{ $item }}</option>
+                                                    <?php
+                                                }
+                                            ?>
+                                            @endforeach
                                         </select>
                                         @error('hari')
                                         <div class="invalid-feedback">
@@ -92,9 +103,18 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="font-weight-bold">Waktu</label>
-                                        <input type="time" class="form-control @error('waktu') is-invalid @enderror" name="waktu" value="{{ $jadwal->waktu }}" placeholder="Masukan Waktu">
-                                            @error('waktu')
+                                        <label class="font-weight-bold">Waktu Mulai</label>
+                                        <input type="time" class="form-control @error('waktu_mulai') is-invalid @enderror" name="waktu_mulai" value="{{ $jadwal->waktu_mulai }}" placeholder="Masukan Waktu Mulai">
+                                            @error('waktu_mulai')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="font-weight-bold">Waktu Selesai</label>
+                                        <input type="time" class="form-control @error('waktu_selesai') is-invalid @enderror" name="waktu_selesai" value="{{ $jadwal->waktu_selesai }}" placeholder="Masukan Waktu Selesai">
+                                            @error('waktu_selesai')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -102,6 +122,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-md btn-primary">UPDATE</button>
+                                <a href="{{ route('jadwal.index') }}" class="btn btn-sm btn-warning" style="font-size : 18px;">CANCEL</a>
                             </form>
                         </div>
                         <!-- /.card-body -->

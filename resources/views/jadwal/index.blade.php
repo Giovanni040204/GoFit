@@ -37,7 +37,8 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">Hari</th>
-                                            <th class="text-center">Waktu</th>
+                                            <th class="text-center">Waktu Mulai</th>
+                                            <th class="text-center">Waktu Selesai</th>
                                             <th class="text-center">Nama Kelas</th>
                                             <th class="text-center">Nama Instruktur</th>
                                             <th class="text-center">Aksi</th>
@@ -47,7 +48,8 @@
                                         @forelse ($jadwal as $item)
                                         <tr>
                                             <td class="text-center">{{$item->hari }}</td>
-                                            <td class="text-center">{{$item->waktu }}</td>                                            
+                                            <td class="text-center">{{$item->waktu_mulai }}</td> 
+                                            <td class="text-center">{{$item->waktu_selesai }}</td>                                           
                                             <td class="text-center">{{$item->parentKelas->nama_kelas}}</td>
                                             <td class="text-center">{{$item->parentInstruktur->nama_instruktur}}</td>
                                             <td class="text-center">

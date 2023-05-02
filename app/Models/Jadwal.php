@@ -19,7 +19,8 @@ class Jadwal extends Model
         'id_kelas',
         'id_instruktur',
         'hari',
-        'waktu',
+        'waktu_mulai',
+        'waktu_selesai',
     ];
 
     public function parentKelas(){

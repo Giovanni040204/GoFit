@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label class="font-weight-bold">Email Pegawai</label>
-                                        <input type="text" class="form-control @error('email_pegawai') is-invalid @enderror" name="email_pegawai" value="{{ $pegawai->email_pegawai }}" placeholder="Masukkan Email Pegawai">
+                                        <input type="email" class="form-control @error('email_pegawai') is-invalid @enderror" name="email_pegawai" value="{{ $pegawai->email_pegawai }}" placeholder="Masukkan Email Pegawai">
                                         @error('email_pegawai')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label class="font-weight-bold">Telepon Pegawai</label>
-                                        <input type="text" class="form-control @error('telepon_pegawai') is-invalid @enderror" name="telepon_pegawai" value="{{ $pegawai->telepon_pegawai }}" placeholder="Masukkan Telepon Pegawai">
+                                        <input type="number" class="form-control @error('telepon_pegawai') is-invalid @enderror" name="telepon_pegawai" value="{{ $pegawai->telepon_pegawai }}" placeholder="Masukkan Telepon Pegawai">
                                         @error('telepon_pegawai')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -102,6 +102,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-md btn-primary">UPDATE</button>
+                                <a href="{{ route('pegawai.index') }}" class="btn btn-sm btn-warning" style="font-size : 18px;">CANCEL</a>
                             </form>
                         </div>
                         <!-- /.card-body -->

@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('id_kelas');
             $table->integer('id_instruktur');
             $table->string('hari');
-            $table->string('waktu');
+            $table->time('waktu_mulai');
+            $table->time('waktu_selesai');
             $table->timestamps();
         });
     }

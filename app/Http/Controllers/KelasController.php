@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jadwal;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class KelasController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $kelas = Kelas::where('nama_kelas','LIKE','%'.$request->search.'%')->paginate(5);
+            $kelas = Kelas::where('nama_kelas','LIKE','%'.$request->search.'%')
+                        ->orWhere('harga_kelas','LIKE','%'.$request->search.'%')
+                        ->paginate(5);
         }else{
             $kelas = Kelas::latest()->paginate(10);
         }
@@ -62,6 +65,11 @@ class KelasController extends Controller
     }    
 
     public function update(Request $request, $id){
+        $this->validate($request, [
+            'nama_kelas' => 'required',
+            'harga_kelas' => 'required'
+        ]);
+
         $kelas = Kelas::whereId($id)->first();
         $kelas->update($request->all());
 
@@ -70,7 +78,14 @@ class KelasController extends Controller
 
     public function destroy($id)
     {
-        Kelas::find($id)->delete();
-        return redirect(route('kelas.index'))->with(['success' => 'Data Berhasil Dihapus']);
+        $data = Jadwal::where('id_kelas','=',$id)->get();
+        $cek = $data->count();
+
+        if($cek!=0){
+            return redirect(route('kelas.index'))->with(['error' => 'Kelas Tersebut Masih Mempunyai Jadwal']);
+        }else{
+            Kelas::find($id)->delete();
+            return redirect(route('kelas.index'))->with(['success' => 'Data Berhasil Dihapus']);
+        }   
     }  
 }

@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label class="font-weight-bold">Email Instruktur</label>
-                                        <input type="text" class="form-control @error('email_instruktur') is-invalid @enderror" name="email_instruktur" value="{{ old('email_instruktur') }}" placeholder="Masukkan Email Instruktur">
+                                        <input type="email" class="form-control @error('email_instruktur') is-invalid @enderror" name="email_instruktur" value="{{ old('email_instruktur') }}" placeholder="Masukkan Email Instruktur">
                                         @error('email_instruktur')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label class="font-weight-bold">Telepon Instruktur</label>
-                                        <input type="text" class="form-control @error('telepon_instruktur') is-invalid @enderror" name="telepon_instruktur" value="{{ old('telepon_instruktur') }}" placeholder="Masukkan Telepon Instruktur">
+                                        <input type="number" class="form-control @error('telepon_instruktur') is-invalid @enderror" name="telepon_instruktur" value="{{ old('telepon_instruktur') }}" placeholder="Masukkan Telepon Instruktur">
                                         @error('telepon_instruktur')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -93,6 +93,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
+                                <a href="{{ route('instruktur.index') }}" class="btn btn-sm btn-warning" style="font-size : 18px;">CANCEL</a>
                             </form>
                         </div>
                         <!-- /.card-body -->

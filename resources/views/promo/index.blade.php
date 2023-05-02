@@ -39,7 +39,7 @@
                                     <div class="col-sm-6">
                                         <ol class="breadcrumb float-sm-right">
                                             <form action="{{ route('promo.index') }}" class="form-inline" method="GET">
-                                                <input type="search" name="search" class="form-control float-right" placeholder="Masukan Judul Promo">
+                                                <input type="search" name="search" class="form-control float-right" placeholder="Masukan Data Promo">
                                                 <div class="input-group-append">
                                                     <button type="submit" class="btn btn-default">
                                                         <i class="fas fa-search"></i>

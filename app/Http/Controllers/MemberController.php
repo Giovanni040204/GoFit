@@ -15,7 +15,14 @@ class MemberController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $member = Member::where('nama_member','LIKE','%'.$request->search.'%')->paginate(5);
+            $member = Member::where('nama_member','LIKE','%'.$request->search.'%')
+                        ->orWhere('email_member','LIKE','%'.$request->search.'%')
+                        ->orWhere('telepon_member','LIKE','%'.$request->search.'%')
+                        ->orWhere('jenis_kelamin_member','LIKE','%'.$request->search.'%')
+                        ->orWhere('tanggal_lahir_member','LIKE','%'.$request->search.'%')
+                        ->orWhere('alamat_member','LIKE','%'.$request->search.'%')
+                        ->orWhere('nomor_member','LIKE','%'.$request->search.'%')
+                        ->paginate(5);
         }else{
             $member = Member::latest()->paginate(5);
         }
@@ -81,6 +88,15 @@ class MemberController extends Controller
     }    
 
     public function update(Request $request, $id){
+        $this->validate($request, [
+            'nama_member' => 'required',
+            'email_member' => 'required',
+            'telepon_member' => 'required',
+            'jenis_kelamin_member' => 'required',
+            'tanggal_lahir_member' => 'required',
+            'alamat_member' => 'required'
+        ]);
+
         $member = Member::whereId($id)->first();
         $member->update($request->all());
 
