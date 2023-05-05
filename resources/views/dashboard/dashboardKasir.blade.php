@@ -56,6 +56,24 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('aktivasi') }}" class="nav-link text-dark">
+                                <i class="nav-icon fa-solid fa-user-group"></i>
+                                <p>Aktivasi Member</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('depositReguler') }}" class="nav-link text-dark">
+                                <i class="nav-icon fa-solid fa-user-group"></i>
+                                <p>Deposit Reguler Member</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('depositKelas') }}" class="nav-link text-dark">
+                                <i class="nav-icon fa-solid fa-user-group"></i>
+                                <p>Deposit Kelas Member</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ url('logout') }}" class="nav-link text-dark">
                                 <i class="nav-icon fa-solid fa-right-from-bracket"></i>
                                 <p>Logout</p>

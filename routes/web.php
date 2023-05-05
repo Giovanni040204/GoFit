@@ -60,7 +60,20 @@ Route::resource('/promo',\App\Http\Controllers\PromoController::class);
 Route::get('promo/edit/{id}', '\App\Http\Controllers\PromoController@edit');
 Route::post('promo/update/{id}', '\App\Http\Controllers\PromoController@update');
 
-Route::Resource('/member',\App\Http\Controllers\MemberController::class);
+Route::resource('/member',\App\Http\Controllers\MemberController::class);
 Route::get('member/edit/{id}', '\App\Http\Controllers\MemberController@edit');
 Route::post('member/update/{id}', '\App\Http\Controllers\MemberController@update');
 Route::get('member/resetPassword/{id}', '\App\Http\Controllers\MemberController@resetPassword')->name('member.resetPassword');
+
+Route::resource('/aktivasi',\App\Http\Controllers\AktivasiController::class);
+Route::get('aktivasi/edit/{id}', '\App\Http\Controllers\AktivasiController@edit');
+Route::post('aktivasi/update/{id}', '\App\Http\Controllers\AktivasiController@update')->name('aktivasi/update');
+Route::get('aktivasi/cetak/{id}', '\App\Http\Controllers\AktivasiController@cetak')->name('aktivasi.cetak');
+
+Route::resource('/depositReguler',\App\Http\Controllers\DepositRegulerController::class);
+Route::get('depositReguler/edit/{id}', '\App\Http\Controllers\DepositRegulerController@edit');
+Route::post('depositReguler/update/{id}', '\App\Http\Controllers\DepositRegulerController@update')->name('depositReguler/update');
+
+Route::resource('/depositKelas',\App\Http\Controllers\DepositKelasController::class);
+Route::get('depositKelas/kelas/{id}', '\App\Http\Controllers\DepositKelasController@edit');
+Route::post('depositKelas/kelas/{id}', '\App\Http\Controllers\DepositKelasController@update')->name('depositKelas/update');

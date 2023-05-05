@@ -24,8 +24,15 @@ class Member extends Model
         'jenis_kelamin_member',
         'tanggal_lahir_member',
         'alamat_member',
+        'status_member',
         'password',
     ];
+
+    public function parentDepositR(){
+        return $this->hasOne('App\Models\DepositReguler','id_member','id')->withDefault([
+            'total_depositR' => 'Belum Melakukan Deposit',
+        ]);;
+    } 
 
     
 }

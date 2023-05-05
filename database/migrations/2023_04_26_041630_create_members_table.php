@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('jenis_kelamin_member');
             $table->date('tanggal_lahir_member');
             $table->string('alamat_member');
+            $table->integer('id_aktivasi');
             $table->string('username');
             $table->string('password');
             $table->timestamps();

@@ -62,7 +62,8 @@
                                             <th class="text-center">Jenis Kelamin Member</th>
                                             <th class="text-center">Tanggal Lahir Member</th>
                                             <th class="text-center">Alamat Member</th>
-                                            {{-- <th class="text-center">Password Member</th> --}}
+                                            <th class="text-center">Status Member</th>
+                                            <th class="text-center">Deposit Reguler</th>
                                             <th class="text-center">Aksi</th>
                                             <th class="text-center">Reset Password</th>
                                         </tr>
@@ -77,13 +78,22 @@
                                             <td class="text-center">{{$item->jenis_kelamin_member }}</td>
                                             <td class="text-center">{{$item->tanggal_lahir_member }}</td>
                                             <td class="text-center">{{$item->alamat_member }}</td>
-                                            {{-- <td class="text-center">{{$item->password}}</td> --}}
+                                            <td class="text-center">{{$item->status_member}}</td>
+                                            <td class="text-center">{{$item->parentDepositR->total_depositR}}</td>
                                             <td class="text-center">
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('member.destroy', $item->id) }}" method="POST">
                                                     <a href="{{ route('member.edit', $item->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                                    <?php
+                                                        if($item->status_member == 'Non Aktif'){
+                                                        ?>
+                                                            <a href="{{ route('aktivasi.edit', $item->id) }}" class="btn btn-sm btn-dark" >AKTIVASI</a>
+                                                        <?php
+                                                        }
+                                                    ?>
+                                                    <a href="{{ route('depositReguler.edit', $item->id) }}" class="btn btn-sm btn-default" >DEPOSIT REGULER</a>
                                                     <a href="{{ route('member.show', $item->id) }}" class="btn btn-sm btn-warning" target="_blank" >CETAK</a>
                                                 </form>
                                             </td>

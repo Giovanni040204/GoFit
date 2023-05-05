@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aktivasi;
+use App\Models\DepositReguler;
 use App\Models\Member;
 use Illuminate\Http\Request;
 
@@ -22,12 +24,15 @@ class MemberController extends Controller
                         ->orWhere('tanggal_lahir_member','LIKE','%'.$request->search.'%')
                         ->orWhere('alamat_member','LIKE','%'.$request->search.'%')
                         ->orWhere('nomor_member','LIKE','%'.$request->search.'%')
+                        ->orWhere('status_member','LIKE','%'.$request->search.'%')
                         ->paginate(5);
         }else{
             $member = Member::latest()->paginate(5);
         }
+        
+        $depositReguler = DepositReguler::all();
 
-        return view('member.index', compact('member'));
+        return view('member.index', compact('member','depositReguler'));
     }
 
     /**
@@ -77,6 +82,7 @@ class MemberController extends Controller
             'jenis_kelamin_member' => $request->jenis_kelamin_member,
             'tanggal_lahir_member' => $request->tanggal_lahir_member,
             'alamat_member' => $request->alamat_member,
+            'status_member' => 'Non Aktif',
             'password' => $password
         ]);
             
