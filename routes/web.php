@@ -77,3 +77,7 @@ Route::post('depositReguler/update/{id}', '\App\Http\Controllers\DepositRegulerC
 Route::resource('/depositKelas',\App\Http\Controllers\DepositKelasController::class);
 Route::get('depositKelas/kelas/{id}', '\App\Http\Controllers\DepositKelasController@edit');
 Route::post('depositKelas/kelas/{id}', '\App\Http\Controllers\DepositKelasController@update')->name('depositKelas/update');
+
+Route::resource('/jadwalHarian',\App\Http\Controllers\JadwalHarianController::class);
+Route::get('jadwalHarian/edit/{id}', '\App\Http\Controllers\JadwalHarianController@edit');
+Route::post('jadwalHarian/update/{id}', '\App\Http\Controllers\JadwalHarianController@update');

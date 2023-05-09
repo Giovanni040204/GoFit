@@ -57,8 +57,14 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('jadwal') }}" class="nav-link text-dark">
-                                <i class="nav-icon fa-solid fa-calendar-days"></i>
+                                <i class="nav-icon fa-solid far fa-calendar"></i>
                                 <p>Mengelola Data Jadwal</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('jadwalHarian') }}" class="nav-link text-dark">
+                                <i class="nav-icon fa-solid fa-calendar-days"></i>
+                                <p>Jadwal Harian</p>
                             </a>
                         </li>
                         <li class="nav-item">

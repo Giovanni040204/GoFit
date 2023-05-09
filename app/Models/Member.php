@@ -33,6 +33,10 @@ class Member extends Model
             'total_depositR' => 'Belum Melakukan Deposit',
         ]);;
     } 
-
+    public function parentDepositK(){
+        return $this->hasOne('App\Models\DepositKelas','id_member','id')->withDefault([
+            'sisa_depositK' => 'Belum Melakukan Deposit',
+        ]);;
+    }
     
 }

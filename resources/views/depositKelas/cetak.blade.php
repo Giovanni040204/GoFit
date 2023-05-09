@@ -17,7 +17,7 @@
     <a href="{{ route('member.index') }}" class="btn btn-sm btn-warning" style="font-size : 18px;">Kembali Ke Tampilan</a>
     <body onload="window.print();">
       <div class=" min-vh-100 d-flex align-items-center justify-content-center">
-          <div class="card mb-3 bgc" style="max-width: 700px;">
+          <div class="card mb-3 bgc" style="max-width: 1000px;">
             <div class="border-dark mb-3">
             <div class="row no-gutters">
                 <div class="card-body">
@@ -25,15 +25,17 @@
                     <td>  
                   <h1 class="card-title"><b>GO-FIT</b></h1>
                   <p class="card-text"><small>Jl. Centralpark No. 10 Yogyakarta</small></p>
-                  <p class="card-title" style="margin-top: 50px"><b>Member : </b>{{$aktivasi->parentMember->nomor_member}} / {{$aktivasi->parentMember->nama_member}}
-                    <br>Aktivasi Tahunan : Rp.3.000.000,-
-                    <br>Masa aktif member : {{$aktivasi->masa_berlaku_aktivasi}} </p>
+                  <p class="card-title" style="margin-top: 20px"><b>Member : </b>{{$depositK->parentMember->nomor_member}} / {{$depositK->parentMember->nama_member}}
+                    <br>Deposit ({{$depositK->jenis_depositK}}) : Rp.{{$depositK->bayar_depositK}},- ({{$depositK->jumlah_depositK}} x Rp.{{$depositK->parentKelas->harga_kelas}},-)
+                    <br>Jenis Kelas : {{$depositK->parentKelas->nama_kelas}}
+                    <br>Total Deposit {{$depositK->parentKelas->nama_kelas}} : {{$depositK->sisa_depositK}}
+                    <br>Berlaku sampai dengan : {{$depositK->masa_berlaku_depositK}}</p>
                   </td>
-                  <td>&emsp;&emsp;&emsp;</td>
+                  <td>&emsp;&emsp;</td>
                   <td>
-                    <p class="card-text"><small>No struk : {{$aktivasi->nomor_aktivasi}}
-                        <br>Tanggal : {{$aktivasi->tanggal_aktivasi}}<br></small></p>
-                    <p class="card-title" style="margin-top: 100px"><small>Kasir : {{$aktivasi->parentPegawai->nomor_pegawai}} / {{$aktivasi->parentPegawai->nama_pegawai}}</small></p>
+                    <p class="card-text" ><small>No struk : {{$depositK->nomor_depositK}}
+                        <br>Tanggal : {{$depositK->tanggal_depositK}}<br></small></p>
+                        <p class="card-title" style="margin-top: 100px"><small>Kasir : {{$depositK->parentPegawai->nomor_pegawai}} / {{$depositK->parentPegawai->nama_pegawai}}</small></p>
                   </td>
                 </div>
               </div>

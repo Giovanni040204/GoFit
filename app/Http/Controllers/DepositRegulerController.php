@@ -98,9 +98,12 @@ class DepositRegulerController extends Controller
                 'id_pegawai' => $request->id_pegawai,
                 'id_member' => $id
             ]); 
-        }        
+        }
+        
+        $depositR = DepositReguler::where('id_member','=',$id)->first();
+        return view('depositReguler.cetak')->with('depositR', $depositR);
  
-        return redirect()->route('depositReguler.index')->with(['success' => 'Deposit Reguler Berhasil Dilakukan']);
+        // return redirect()->route('depositReguler.index')->with(['success' => 'Deposit Reguler Berhasil Dilakukan']);
     }
     
     public function show($id){

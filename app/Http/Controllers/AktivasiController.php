@@ -77,8 +77,11 @@ class AktivasiController extends Controller
             'id_member' => $id,
             'status_aktivasi' => 'Aktif'
         ]);
+
+        $aktivasi = Aktivasi::where('id_member','=',$id)->first();
+        return view('aktivasi.cetak')->with('aktivasi', $aktivasi);
             
-        return redirect()->route('aktivasi.index')->with(['success' => 'Aktivasi Berhasil Dilakukan  Kembalian = '.$kembalian]);
+        // return redirect()->route('aktivasi.index')->with(['success' => 'Aktivasi Berhasil Dilakukan  Kembalian = '.$kembalian]);
     }
 
     public function show($id){

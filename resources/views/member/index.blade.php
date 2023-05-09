@@ -64,7 +64,9 @@
                                             <th class="text-center">Alamat Member</th>
                                             <th class="text-center">Status Member</th>
                                             <th class="text-center">Deposit Reguler</th>
+                                            <th class="text-center">Deposit Kelas</th>
                                             <th class="text-center">Aksi</th>
+                                            <th class="text-center">Lainnya</th>
                                             <th class="text-center">Reset Password</th>
                                         </tr>
                                     </thead>
@@ -80,23 +82,36 @@
                                             <td class="text-center">{{$item->alamat_member }}</td>
                                             <td class="text-center">{{$item->status_member}}</td>
                                             <td class="text-center">{{$item->parentDepositR->total_depositR}}</td>
+                                            <td class="text-center">{{$item->parentDepositK->sisa_depositK}}</td>
                                             <td class="text-center">
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('member.destroy', $item->id) }}" method="POST">
                                                     <a href="{{ route('member.edit', $item->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                                    <a href="{{ route('member.show', $item->id) }}" class="btn btn-sm btn-warning" target="_blank" >CETAK</a>
+                                                </form>
+                                            </td>
+                                            <td class="text-center">
+                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('member.destroy', $item->id) }}" method="POST">
                                                     <?php
                                                         if($item->status_member == 'Non Aktif'){
                                                         ?>
                                                             <a href="{{ route('aktivasi.edit', $item->id) }}" class="btn btn-sm btn-dark" >AKTIVASI</a>
                                                         <?php
+                                                        }else{
+                                                            ?>
+                                                            <a href="{{ route('depositReguler.edit', $item->id) }}" class="btn btn-sm btn-default" >DEPOSIT REGULER</a>
+                                                            <?php
+                                                                if($item->parentDepositK->sisa_depositK == 0 || $item->parentDepositK->sisa_depositK == 'Belum Melakukan Deposit'){
+                                                                    ?>
+                                                                        <a href="{{ route('depositKelas.edit', $item->id) }}" class="btn btn-sm btn-primary">DEPOSIT KELAS</a>
+                                                                    <?php
+                                                                }
                                                         }
                                                     ?>
-                                                    <a href="{{ route('depositReguler.edit', $item->id) }}" class="btn btn-sm btn-default" >DEPOSIT REGULER</a>
-                                                    <a href="{{ route('member.show', $item->id) }}" class="btn btn-sm btn-warning" target="_blank" >CETAK</a>
                                                 </form>
-                                            </td>
+                                            </td>                                            
                                             <td class="text-center">
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('member.resetPassword', $item->id) }}" method="PUT">
                                                     <button type="submit" class="btn btn-sm btn-info">Reset</button>

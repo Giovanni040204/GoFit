@@ -46,10 +46,12 @@ class DepositKelasController extends Controller
             'id_kelas' => 'required',
             'jenis_deposit' => 'required',
             'jumlah_bayar' => 'required',
-            'jumlah_uang' => 'required',
         ]);
 
-        if($request->jumlah_uang < $request->jumlah_bayar){
+        $kelas = Kelas::whereId($request->id_kelas)->first();
+        $harga = $kelas->harga_kelas * $request->jenis_deposit;
+
+        if($harga > $request->jumlah_bayar){
             return redirect()->route('member.index')->with(['error' => 'Uang Yang Dimasukan Masih Kurang']);
         }
 
@@ -63,18 +65,22 @@ class DepositKelasController extends Controller
         $tanggal_depositK = Carbon::now();
         $masa_berlaku_depositK = date('Y-m-d', strtotime('+1 month', strtotime($tanggal_depositK)));
 
-        if($request->jenis_deposit == '1'){
+        if($request->jenis_deposit == '5'){
             $jenis_depositK = 'bayar 5 gratis 1';
             $masa_berlaku_depositK = date('Y-m-d', strtotime('+1 month', strtotime($tanggal_depositK)));
             $jumlah_depositK = 5;
             $bonus_depositK = 1;
             $sisa_depositK = 6;
+            $kelas = Kelas::whereId($request->id_kelas)->first();
+            $bayar_deposit = $kelas->harga_kelas * 5;
         }else{
             $jenis_depositK = 'bayar 10 gratis 3';
             $masa_berlaku_depositK = date('Y-m-d', strtotime('+2 month', strtotime($tanggal_depositK)));
             $jumlah_depositK = 10;
             $bonus_depositK = 3;
             $sisa_depositK = 13;
+            $kelas = Kelas::whereId($request->id_kelas)->first();
+            $bayar_deposit = $kelas->harga_kelas * 10;
         }
 
         $data = DepositKelas::where('id_member','=',$id)->get();
@@ -90,7 +96,7 @@ class DepositKelasController extends Controller
                 'jenis_depositK' => $jenis_depositK,
                 'jumlah_depositK' => $jumlah_depositK,
                 'bonus_depositK' => $bonus_depositK,
-                'bayar_depositK' => $request->jumlah_bayar,
+                'bayar_depositK' => $bayar_deposit,
                 'sisa_depositK' => $sisa_depositK,
                 'id_pegawai' => $request->id_pegawai,
                 'id_member' => $id,
@@ -101,18 +107,21 @@ class DepositKelasController extends Controller
                 'nomor_depositK' => $nomor_depositK,
                 'tanggal_depositK' => $tanggal_depositK,
                 'masa_berlaku_depositK' => $masa_berlaku_depositK,
-                'jenis_depositK' => $request->jenis_depositK,
+                'jenis_depositK' => $jenis_depositK,
                 'jumlah_depositK' => $jumlah_depositK,
                 'bonus_depositK' => $bonus_depositK,
-                'bayar_depositK' => $request->jumlah_bayar,
+                'bayar_depositK' => $bayar_deposit,
                 'sisa_depositK' => $sisa_depositK,
                 'id_pegawai' => $request->id_pegawai,
                 'id_member' => $id,
-                'id_pegawai' => $request->id_kelas, 
+                'id_kelas' => $request->id_kelas,  
             ]); 
-        }        
+        }
+        
+        $depositK = DepositKelas::where('id_member','=',$id)->first();
+        return view('depositKelas.cetak')->with('depositK', $depositK);
  
-        return redirect()->route('depositKelas.index')->with(['success' => 'Deposit Kelas Berhasil Dilakukan']);
+        // return redirect()->route('depositKelas.index')->with(['success' => 'Deposit Kelas Berhasil Dilakukan']);
     }
     
     public function show($id){

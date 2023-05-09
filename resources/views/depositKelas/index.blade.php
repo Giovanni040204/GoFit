@@ -41,6 +41,7 @@
                                             <th class="text-center">Jenis Kelas</th>
                                             <th class="text-center">Jenis Deposit</th>
                                             <th class="text-center">Jumlah Deposit</th>
+                                            <th class="text-center">Jumlah Harga</th>
                                             <th class="text-center">Bonus Deposit</th>
                                             <th class="text-center">Sisa Deposit</th>
                                             <th class="text-center">Nama Member</th>
@@ -57,6 +58,7 @@
                                             <td class="text-center">{{$item->parentKelas->nama_kelas }}</td>
                                             <td class="text-center">{{$item->jenis_depositK }}</td>
                                             <td class="text-center">{{$item->jumlah_depositK }}</td>
+                                            <td class="text-center">{{$item->bayar_depositK }}</td>
                                             <td class="text-center">{{$item->bonus_depositK }}</td>
                                             <td class="text-center">{{$item->sisa_depositK }}</td>
                                             <td class="text-center">{{$item->parentMember->nama_member }}</td>
