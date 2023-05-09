@@ -47,12 +47,21 @@
                                     <div class="form-group col-md-6">
                                         <div class="form-group col-md-12">
                                             <label class="font-weight-bold">Nama Instruktur</label>
-                                            <input readonly type="text" class="form-control @error('id_instruktur') is-invalid @enderror" name="id_instruktur" value="{{ $jadwalHarian->parentInstruktur->nama_instruktur }}" placeholder="Masukan Nama Instuktur">
-                                            @error('id_instruktur')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
+                                            <select class="form-control  @error('id_instruktur') is-invalid @enderror" name="id_instruktur" value="{{ $jadwalHarian->id_instruktur }}">
+                                                @foreach ($instruktur as $item)
+                                                <?php
+                                                    if($jadwalHarian->id_instruktur == $item->id){
+                                                        ?>
+                                                            <option value="{{ $item->id }}" selected>{{ $item->nama_instruktur }}</option>
+                                                        <?php
+                                                    }else{
+                                                        ?>
+                                                            <option value="{{ $item->id }}">{{ $item->nama_instruktur }}</option>
+                                                        <?php
+                                                    }
+                                                ?>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div> 
                                     <div class="form-group col-md-6">

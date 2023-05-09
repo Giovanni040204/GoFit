@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aktivasi;
+use App\Models\DepositKelas;
 use App\Models\DepositReguler;
 use App\Models\Member;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -16,6 +18,34 @@ class MemberController extends Controller
     */
     public function index(Request $request)
     {
+        $harini = Carbon::now()->format('Y-m-d');
+
+        $aktivasi = Aktivasi::all();
+        $cek = $aktivasi->count(); 
+
+        for($i=0;$i<$cek;$i++){
+            if($aktivasi[$i]->masa_berlaku_aktivasi < $harini){
+                $member = Member::whereId($aktivasi[$i]->id_member)->first();
+                $member->update([
+                    'status_member' => 'Non Aktif'
+                ]);
+
+                Aktivasi::where('id_member','=',$aktivasi[$i]->id_member)->delete();
+            }
+        }
+        
+        $depositK = DepositKelas::all();
+        $cek = $depositK->count(); 
+
+        for($i=0;$i<$cek;$i++){
+            if($depositK[$i]->masa_berlaku_depositK < $harini){
+                $data = DepositKelas::where('id_member','=',$depositK[$i]->id_member)->first();
+                $data->update([
+                    'sisa_depositK' => 0
+                ]);
+            }
+        }         
+
         if($request->has('search')){
             $member = Member::latest()->where('nama_member','LIKE','%'.$request->search.'%')
                         ->orWhere('email_member','LIKE','%'.$request->search.'%')

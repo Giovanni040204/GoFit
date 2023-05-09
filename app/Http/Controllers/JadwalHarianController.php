@@ -28,6 +28,7 @@ class JadwalHarianController extends Controller
                             ->orWhere('jadwal_harians.hari','LIKE','%'.$request->search.'%')
                             ->orWhere('jadwal_harians.tanggal','LIKE','%'.$request->search.'%')
                             ->orWhere('jadwal_harians.waktu_mulai','LIKE','%'.$request->search.'%')
+                            ->orWhere('jadwal_harians.status_jadwal','LIKE','%'.$request->search.'%')
                             ->get();
         }else{
             $jadwalHarian = JadwalHarian::all();
@@ -250,7 +251,10 @@ class JadwalHarianController extends Controller
         }
 
         $jadwalHarian = JadwalHarian::whereId($id)->first();
-        $jadwalHarian->update(['status_jadwal' => $request->status_jadwal]);
+        $jadwalHarian->update([
+            'id_instruktur' => $request->id_instruktur,
+            'status_jadwal' => $request->status_jadwal
+        ]);
 
         return redirect()->route('jadwalHarian.index')->with(['success' => 'Status Jadwal Harian Berhasil Diedit']);
     }    
