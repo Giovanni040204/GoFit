@@ -68,6 +68,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('izinWeb') }}" class="nav-link text-dark">
+                                <i class="nav-icon fa-solid fa-calendar-days"></i>
+                                <p>Mengelola Data Izin</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ url('logout') }}" class="nav-link text-dark">
                                 <i class="nav-icon fa-solid fa-right-from-bracket"></i>
                                 <p>Logout</p>

@@ -81,3 +81,7 @@ Route::post('depositKelas/kelas/{id}', '\App\Http\Controllers\DepositKelasContro
 Route::resource('/jadwalHarian',\App\Http\Controllers\JadwalHarianController::class);
 Route::get('jadwalHarian/edit/{id}', '\App\Http\Controllers\JadwalHarianController@edit');
 Route::post('jadwalHarian/update/{id}', '\App\Http\Controllers\JadwalHarianController@update');
+
+Route::get('izin/edit/{id}', '\App\Http\Controllers\IzinController@edit')->name('izin.edit');
+Route::post('izin/updateWeb/{id}', '\App\Http\Controllers\IzinController@updateWeb')->name('izin/updateWeb');
+Route::get('izinWeb/', '\App\Http\Controllers\IzinController@indexWeb')->name('izin.indexWeb');
