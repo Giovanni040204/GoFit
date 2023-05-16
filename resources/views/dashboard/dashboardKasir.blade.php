@@ -55,7 +55,7 @@
                                 <p>Mengelola Data Member</p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a href="{{ url('aktivasi') }}" class="nav-link text-dark">
                                 <i class="nav-icon fa-solid fa fa-asl-interpreting"></i>
                                 <p>Aktivasi Member</p>
@@ -72,7 +72,13 @@
                                 <i class="nav-icon fa-solid fa fa-database"></i>
                                 <p>Deposit Kelas Member</p>
                             </a>
-                        </li> --}}
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('terlambat') }}" class="nav-link text-dark">
+                                <i class="nav-icon fa-solid fa-stopwatch"></i>
+                                <p>Terlambat Instruktur</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ url('logout') }}" class="nav-link text-dark">
                                 <i class="nav-icon fa-solid fa-right-from-bracket"></i>

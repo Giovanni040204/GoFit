@@ -13,10 +13,30 @@ class DepositKelasController extends Controller
 {
     public function index()
     {
-        //get posts
+        $harini = Carbon::now()->format('Y-m-d');
+        $reset = [];
+        $a = 0;
+        $b = 0;        
+
+        $depositK = DepositKelas::all();
+        $cek = $depositK->count(); 
+
+        for($i=0;$i<$cek;$i++){
+            if($depositK[$i]->masa_berlaku_depositK == $harini){
+                $member = Member::whereId($depositK[$i]->id_member)->first();
+                $reset[$a] = $member;
+                $a++;
+                if($depositK[$i]->sisa_depositK == 0){
+                    $b = 0;
+                }else{
+                    $b = 1;
+                }
+            }
+        }
+
         $depositK = DepositKelas::latest()->paginate(10);
         //render view with posts
-        return view('depositKelas.index', compact('depositK'));
+        return view('depositKelas.index', compact('depositK','reset','a','b'));
     }
 
     /**
@@ -127,5 +147,23 @@ class DepositKelasController extends Controller
     public function show($id){
         $depositK = DepositKelas::whereId($id)->first();
         return view('depositKelas.cetak')->with('depositK', $depositK);
+    }
+
+    public function resetDeposit(){
+        $harini = Carbon::now()->format('Y-m-d');
+
+        $depositK = DepositKelas::all();
+        $cek = $depositK->count(); 
+
+        for($i=0;$i<$cek;$i++){
+            if($depositK[$i]->masa_berlaku_depositK == $harini){
+                $data = DepositKelas::where('id_member','=',$depositK[$i]->id_member)->first();
+                $data->update([
+                    'sisa_depositK' => 0
+                ]);
+            }
+        }
+
+        return redirect(route('depositKelas.index'))->with(['success' => 'Berhasil Reset Deposit']);
     }
 }

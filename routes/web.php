@@ -47,6 +47,8 @@ Route::post('pegawai/update/{id}', '\App\Http\Controllers\PegawaiController@upda
 Route::resource('/instruktur',\App\Http\Controllers\InstrukturController::class);
 Route::get('instruktur/edit/{id}', '\App\Http\Controllers\InstrukturController@edit');
 Route::post('instruktur/update/{id}', '\App\Http\Controllers\InstrukturController@update');
+Route::get('resetTerlambat', '\App\Http\Controllers\InstrukturController@resetTerlambat')->name('instruktur.resetTerlambat');
+Route::get('terlambat/', '\App\Http\Controllers\InstrukturController@indexTerlambat')->name('instruktur.indexTerlambat');
 
 Route::resource('/kelas',\App\Http\Controllers\KelasController::class);
 Route::get('kelas/edit/{id}', '\App\Http\Controllers\KelasController@edit');
@@ -64,11 +66,13 @@ Route::resource('/member',\App\Http\Controllers\MemberController::class);
 Route::get('member/edit/{id}', '\App\Http\Controllers\MemberController@edit');
 Route::post('member/update/{id}', '\App\Http\Controllers\MemberController@update');
 Route::get('member/resetPassword/{id}', '\App\Http\Controllers\MemberController@resetPassword')->name('member.resetPassword');
+Route::get('deaktivasi', '\App\Http\Controllers\MemberController@deaktivasi')->name('member.deaktivasi');
 
 Route::resource('/aktivasi',\App\Http\Controllers\AktivasiController::class);
 Route::get('aktivasi/edit/{id}', '\App\Http\Controllers\AktivasiController@edit');
 Route::post('aktivasi/update/{id}', '\App\Http\Controllers\AktivasiController@update')->name('aktivasi/update');
 Route::get('aktivasi/cetak/{id}', '\App\Http\Controllers\AktivasiController@cetak')->name('aktivasi.cetak');
+Route::get('deaktivasi', '\App\Http\Controllers\AktivasiController@deaktivasi')->name('aktivasi.deaktivasi');
 
 Route::resource('/depositReguler',\App\Http\Controllers\DepositRegulerController::class);
 Route::get('depositReguler/edit/{id}', '\App\Http\Controllers\DepositRegulerController@edit');
@@ -77,6 +81,7 @@ Route::post('depositReguler/update/{id}', '\App\Http\Controllers\DepositRegulerC
 Route::resource('/depositKelas',\App\Http\Controllers\DepositKelasController::class);
 Route::get('depositKelas/kelas/{id}', '\App\Http\Controllers\DepositKelasController@edit');
 Route::post('depositKelas/kelas/{id}', '\App\Http\Controllers\DepositKelasController@update')->name('depositKelas/update');
+Route::get('resetDeposit', '\App\Http\Controllers\DepositKelasController@resetDeposit')->name('depositKelas.resetDeposit');
 
 Route::resource('/jadwalHarian',\App\Http\Controllers\JadwalHarianController::class);
 Route::get('jadwalHarian/edit/{id}', '\App\Http\Controllers\JadwalHarianController@edit');

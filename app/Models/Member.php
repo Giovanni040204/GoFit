@@ -36,7 +36,7 @@ class Member extends Model
     public function parentDepositK(){
         return $this->hasOne('App\Models\DepositKelas','id_member','id')->withDefault([
             'sisa_depositK' => 'Belum Melakukan Deposit',
-        ]);;
+            'jenis_depositK' => 'Belum Melakukan Deposit',
+        ]);
     }
-    
-}
+}   

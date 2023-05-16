@@ -23,9 +23,36 @@ class IzinController extends Controller
         $izin = Izin::all();
 
         if(count($izin) > 0){
+            // return response([
+            //     'status' => 200,
+            //     'error' => "false",
+            //     'message' => '',
+            //     'totaldata' => count($izin),
+            //     'data' => $izin,
+            // ], 200);
+
+            return response($izin);
+
+        }
+
+        
+
+        return response([
+            'message' => 'Empty',
+            'data' => null
+        ], 400);
+    }
+
+    public function show($id){
+        $izin = Izin::all();
+
+        if(count($izin) > 0){
             return response([
-                'message' => 'Retrieve All Success',
-                'data' => $izin
+                'status' => 200,
+                'error' => "false",
+                'message' => '',
+                'totaldata' => count($izin),
+                'data' => $izin,
             ], 200);
         }
 
@@ -47,6 +74,8 @@ class IzinController extends Controller
             'id_instruktur' => 'required',
             'id_jadwalHarian' => 'required',
             'keterangan_izin' => 'required',
+            'status_izin' => 'required',
+            'konfirmasi_izin' => 'required',
         ]); 
 
         if ($validator->fails()) {
@@ -58,8 +87,8 @@ class IzinController extends Controller
             'id_instruktur' => $request->id_instruktur,
             'id_jadwalHarian' => $request->id_jadwalHarian,
             'keterangan_izin' => $request->keterangan_izin,
-            'status_izin' => 0,
-            'konfirmasi_izin' => '-'
+            'status_izin' => $request->status_izin,
+            'konfirmasi_izin' => $request->konfirmasi_izin
         ]);
             
         return new IzinResource(true, 'Data Izin Berhasil Ditambahkan!', $izin);

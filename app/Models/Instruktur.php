@@ -23,5 +23,7 @@ class Instruktur extends Model
         'jenis_kelamin_instruktur',
         'tanggal_lahir_instruktur',
         'alamat_instruktur',
+        'jumlah_terlambat',
+        'tanggal_reset',
     ];    
 }

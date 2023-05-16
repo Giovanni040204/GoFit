@@ -76,6 +76,49 @@
                                     </div>
                                     <div class="d-flex justify-content-center">{{$depositK->links()}}</div> 
                                 </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-body">
+                                        <h5>Daftar Deposit Yang Kadaluarsa Hari Ini</h5>
+                                        <div class="table-responsive p-0">
+                                            <table class="table table-hover text-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Nomor Member</th>
+                                                        <th class="text-center">Nama Member</th>
+                                                        <th class="text-center">Jenis Deposit</th>
+                                                        <th class="text-center">Sisa Deposit Member</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @forelse ($reset as $item)
+                                                    <tr>
+                                                        <td class="text-center">{{$item->nomor_member }}</td>
+                                                        <td class="text-center">{{$item->nama_member }}</td>
+                                                        <td class="text-center">{{$item->parentDepositK->jenis_depositK}}</td>
+                                                        <td class="text-center">{{$item->parentDepositK->sisa_depositK}}</td>
+                                                    </tr>
+                                                    @empty
+                                                    <div class="alert alert-danger">
+                                                        Tidak Ada
+                                                    </div>
+                                                    @endforelse
+                                                </tbody>
+                                            </table>                                        
+                                        </div>
+                                        <?php
+                                        if($b == 1){
+                                            ?>
+                                            <td class="text-center">
+                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('depositKelas.resetDeposit') }}" method="PUT">
+                                                    <button type="submit" class="btn btn-sm btn-info">RESET DEPOSIT</button>
+                                                </form>
+                                            </td>  
+                                            <?php
+                                        }
+                                        ?>
+                                        {{-- <div class="d-flex justify-content-center">{{$member->links()}}</div>  --}}
+                                    </div>
+                                </div> 
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->

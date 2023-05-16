@@ -65,6 +65,46 @@
                                     <div class="d-flex justify-content-center">{{$aktivasi->links()}}</div> 
                                 </div>
                             <!-- /.card-body -->
+                            <div class="card-body">
+                                <h5>Daftar Member Yang Kadaluarsa Hari Ini</h5>
+                                <div class="table-responsive p-0">
+                                    <table class="table table-hover text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Nomor Member</th>
+                                                <th class="text-center">Nama Member</th>
+                                                <th class="text-center">Status Member</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($deaktivasi as $item)
+                                            <tr>
+                                                <td class="text-center">{{$item->nomor_member }}</td>
+                                                <td class="text-center">{{$item->nama_member }}</td>
+                                                <td class="text-center">{{$item->status_member}}</td>
+                                            </tr>
+                                            @empty
+                                            <div class="alert alert-danger">
+                                                Tidak Ada
+                                            </div>
+                                            @endforelse
+                                        </tbody>
+                                    </table>                                        
+                                </div>
+                                <?php
+                                if($b != 0){
+                                    ?>
+                                    <td class="text-center">
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('aktivasi.deaktivasi') }}" method="PUT">
+                                            <button type="submit" class="btn btn-sm btn-info">DEAKTIVASI MEMBER</button>
+                                        </form>
+                                    </td>  
+                                    <?php
+                                }
+                                ?>
+                                {{-- <div class="d-flex justify-content-center">{{$member->links()}}</div>  --}}
+                            </div>
+                        </div>                            
                         </div>
                         <!-- /.card -->
                     </div>

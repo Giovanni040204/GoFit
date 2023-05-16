@@ -17,10 +17,41 @@ class AktivasiController extends Controller
     */
     public function index()
     {
-        //get posts
+        $harini = Carbon::now()->format('Y-m-d');
+        $deaktivasi = [];
+        $a = 0;
+        $b = 0;
+
+        $aktivasi = Aktivasi::all();
+        $cek = $aktivasi->count(); 
+
+        for($i=0;$i<$cek;$i++){
+            if($aktivasi[$i]->masa_berlaku_aktivasi == $harini){
+                $member = Member::whereId($aktivasi[$i]->id_member)->first();
+                $deaktivasi[$a] = $member;
+                $a++;
+            }
+        }
+
+        for($i=0;$i<$cek;$i++){
+            if($aktivasi[$i]->masa_berlaku_aktivasi == $harini){
+                $member = Member::whereId($aktivasi[$i]->id_member)->first();
+                if($member->status_member == 'Aktif'){
+                    $b = 1;
+                }
+  
+            }
+        }
+
+        for($i=0;$i<$cek;$i++){
+            if($aktivasi[$i]->masa_berlaku_aktivasi < $harini){
+                Aktivasi::where('id_member','=',$aktivasi[$i]->id_member)->delete();
+            }
+        }
+
         $aktivasi = Aktivasi::latest()->paginate(10);
         //render view with posts
-        return view('aktivasi.index', compact('aktivasi'));
+        return view('aktivasi.index', compact('aktivasi','deaktivasi','a','b'));
     }
 
     /**
@@ -87,5 +118,23 @@ class AktivasiController extends Controller
     public function show($id){
         $aktivasi = Aktivasi::whereId($id)->first();
         return view('aktivasi.cetak')->with('aktivasi', $aktivasi);
+    }
+
+    public function deaktivasi(){
+        $harini = Carbon::now()->format('Y-m-d');
+
+        $aktivasi = Aktivasi::all();
+        $cek = $aktivasi->count(); 
+
+        for($i=0;$i<$cek;$i++){
+            if($aktivasi[$i]->masa_berlaku_aktivasi == $harini){
+                $member = Member::whereId($aktivasi[$i]->id_member)->first();
+                $member->update([
+                    'status_member' => 'Non Aktif'
+                ]);
+            }
+        } 
+
+        return redirect(route('aktivasi.index'))->with(['success' => 'Berhasil Dekativasi Member']);
     }
 }

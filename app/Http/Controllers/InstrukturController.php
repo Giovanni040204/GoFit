@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Instruktur;
 use App\Models\Jadwal;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class InstrukturController extends Controller
@@ -25,7 +26,7 @@ class InstrukturController extends Controller
                             ->orWhere('nomor_instruktur','LIKE','%'.$request->search.'%')
                             ->paginate(5);
         }else{
-            $instruktur = Instruktur::latest()->paginate(5);
+            $instruktur = Instruktur::latest()->paginate(10);
         }
 
         return view('instruktur.index', compact('instruktur'));
@@ -75,7 +76,8 @@ class InstrukturController extends Controller
             'telepon_instruktur' => $request->telepon_instruktur,
             'jenis_kelamin_instruktur' => $request->jenis_kelamin_instruktur,
             'tanggal_lahir_instruktur' => $request->tanggal_lahir_instruktur,
-            'alamat_instruktur' => $request->alamat_instruktur
+            'alamat_instruktur' => $request->alamat_instruktur,
+            'jumlah_terlambat' => 0
         ]);
             
         return redirect()->route('instruktur.index')->with(['success' => 'Data Berhasil Disimpan']);
@@ -116,5 +118,34 @@ class InstrukturController extends Controller
             return redirect(route('instruktur.index'))->with(['success' => 'Data Berhasil Dihapus']);
         }
         
+    }
+
+    public function indexTerlambat()
+    {
+        $instruktur = Instruktur::all();
+        return view('instruktur.terlambat', compact('instruktur'));
+    }
+
+    public function resetTerlambat(){
+        $harini = Carbon::now()->format('Y-m-d');
+        $instruktur = Instruktur::all();
+        $cek = $instruktur->count();
+
+        
+        if($harini != $instruktur[0]->tanggal_reset && $instruktur[0]->tanggal_reset != NULL){
+            return redirect(route('instruktur.indexTerlambat'))->with(['error' => 'Terlambat Instruktur Hanya Bisa Direset 1 Bulan 1 Kali']);
+        }else{
+            for($i=0;$i<$cek;$i++){
+                $sekarang = Carbon::now();
+                $tanggal_reset = date('Y-m-d', strtotime('+1 month', strtotime($sekarang)));
+
+                $instruktur[$i]->update([
+                    'jumlah_terlambat' => 0,
+                    'tanggal_reset' => $tanggal_reset
+                ]);
+            }
+        }    
+
+        return redirect(route('instruktur.indexTerlambat'))->with(['success' => 'Terlambat Instruktur Berhasil Direset']);
     }
 }
