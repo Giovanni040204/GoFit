@@ -63,7 +63,7 @@
                                     <div class="form-group col-md-12">
                                         <label class="font-weight-bold">Konfrimasi Izin</label>
                                         <select class="form-control  @error('konfirmasi_izin') is-invalid @enderror" name="konfirmasi_izin" value="{{ old('konfirmasi_izin') }}">
-                                            <option value="" disabled selected hidden>Pilih Kasir</option>
+                                            <option value="" disabled selected hidden>Pilih Konfirmasi</option>
                                             <option value="Diizinkan">Diizinkan</option>
                                             <option value="Tidak Diizinkan">Tidak Diizinkan</option>
                                         </select>

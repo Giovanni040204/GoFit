@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Izin;
 
 use App\Http\Resources\IzinResource;
+use App\Models\JadwalHarian;
 use Illuminate\Support\Facades\Validator;
 use Lcobucci\JWT\Validation\Constraint\ValidAt;
 
@@ -114,6 +115,13 @@ class IzinController extends Controller
             'konfirmasi_izin' => $request->konfirmasi_izin
         ]);
 
+        if($request->konfirmasi_izin == 'Diizinkan'){
+            $jadwalHarian = JadwalHarian::whereId($izin->id_jadwalHarian)->first();
+            $jadwalHarian->update([
+                'status_jadwal' => 'Libur'
+            ]);  
+        }
+        
         return redirect()->route('izin.indexWeb')->with(['success' => 'Berhasil Konfirmasi Izin']);
     }
 }

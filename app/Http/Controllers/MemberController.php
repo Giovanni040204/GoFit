@@ -118,8 +118,8 @@ class MemberController extends Controller
     }
 
     public function show($id){
-        // $member = Member::whereId($id)->first();
-        // return view('member.cetak')->with('member', $member);
+        $member = Member::whereId($id)->first();
+        return view('member.cetak')->with('member', $member);
     }
     
     public function resetPassword($id){

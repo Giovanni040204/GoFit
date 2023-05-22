@@ -36,6 +36,8 @@
                                 <table class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
+                                            <th class="text-center">Hari</th>
+                                            <th class="text-center">Jam</th>
                                             <th class="text-center">Nama Instruktur</th>
                                             <th class="text-center">Kelas Yang Izin</th>
                                             <th class="text-center">Keterangan Izin</th>
@@ -45,6 +47,8 @@
                                     <tbody>
                                         @forelse ($izinBelum as $item)
                                         <tr>
+                                            <td class="text-center">{{$item->parentJadwalHarian->hari }}</td>
+                                            <td class="text-center">{{$item->parentJadwalHarian->waktu_mulai }}</td>
                                             <td class="text-center">{{$item->parentInstruktur->nama_instruktur }}</td>
                                             <td class="text-center">{{$item->parentJadwalHarian->parentkelas->nama_kelas }}</td>
                                             <td class="text-center">{{$item->keterangan_izin }}</td>
@@ -68,6 +72,8 @@
                                     <table class="table table-hover text-nowrap">
                                         <thead>
                                             <tr>
+                                                <th class="text-center">Hari</th>
+                                                <th class="text-center">Jam</th>
                                                 <th class="text-center">Nama Instruktur</th>
                                                 <th class="text-center">Kelas Yang Izin</th>
                                                 <th class="text-center">Keterangan Izin</th>
@@ -77,6 +83,8 @@
                                         <tbody>
                                             @forelse ($izinSudah as $item)
                                             <tr>
+                                                <td class="text-center">{{$item->parentJadwalHarian->hari }}</td>
+                                                <td class="text-center">{{$item->parentJadwalHarian->waktu_mulai }}</td>
                                                 <td class="text-center">{{$item->parentInstruktur->nama_instruktur }}</td>
                                                 <td class="text-center">{{$item->parentJadwalHarian->parentkelas->nama_kelas }}</td>
                                                 <td class="text-center">{{$item->keterangan_izin }}</td>

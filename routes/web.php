@@ -90,3 +90,11 @@ Route::post('jadwalHarian/update/{id}', '\App\Http\Controllers\JadwalHarianContr
 Route::get('izin/edit/{id}', '\App\Http\Controllers\IzinController@edit')->name('izin.edit');
 Route::post('izin/updateWeb/{id}', '\App\Http\Controllers\IzinController@updateWeb')->name('izin/updateWeb');
 Route::get('izinWeb/', '\App\Http\Controllers\IzinController@indexWeb')->name('izin.indexWeb');
+
+Route::resource('/presensiMember',\App\Http\Controllers\PresensiMemberController::class);
+Route::get('indexbyid/{id}', '\App\Http\Controllers\PresensiMemberController@indexbyid')->name('presensiMember.indexbyid');
+Route::get('presensiMember/cetak/{id}', '\App\Http\Controllers\PresensiMemberController@cetak')->name('presensiMember.cetak');
+
+Route::resource('/presensiGym',\App\Http\Controllers\PresensiGymController::class);
+Route::get('presensiGym/store/{id}', '\App\Http\Controllers\PresensiGymController@store')->name('presensiGym.store');
+Route::get('presensiGym/cetak/{id}', '\App\Http\Controllers\PresensiGymController@cetak')->name('presensiGym.cetak');
