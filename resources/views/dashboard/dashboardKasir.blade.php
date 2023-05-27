@@ -81,13 +81,13 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('presensiMember') }}" class="nav-link text-dark">
-                                <i class="nav-icon fa-solid fa fa-credit-card"></i>
+                                <i class="nav-icon fa-solid fa fa-person"></i>
                                 <p>Presensi Member</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('presensiGym') }}" class="nav-link text-dark">
-                                <i class="nav-icon fa-solid fa fa-credit-card"></i>
+                                <i class="nav-icon fa-solid fa fa-leaf"></i>
                                 <p>Presensi Gym</p>
                             </a>
                         </li>

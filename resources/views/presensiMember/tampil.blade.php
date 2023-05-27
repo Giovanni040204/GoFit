@@ -46,8 +46,10 @@
                                         <tr>
                                             <th class="text-center">Nomor Presensi</th>
                                             <th class="text-center">Tanggal Presensi</th>
+                                            <th class="text-center">Nomor Member</th>
                                             <th class="text-center">Nama Member</th>
                                             <th class="text-center">Nama Kelas</th>
+                                            <th class="text-center">Jam Mulai Kelas</th>
                                             <th class="text-center">Nama Instruktur</th>
                                             <th class="text-center">Deposit Yang Dipotong</th>
                                             <th class="text-center">Aksi</th>
@@ -58,8 +60,10 @@
                                         <tr>
                                             <td class="text-center">{{$item->nomor_presensi }}</td>
                                             <td class="text-center">{{$item->tanggal_presensi }}</td>
+                                            <td class="text-center">{{$item->parentMember->nomor_member }}</td>
                                             <td class="text-center">{{$item->parentMember->nama_member }}</td>
                                             <td class="text-center">{{$item->parentJadwalHarian->parentKelas->nama_kelas }}</td>
+                                            <td class="text-center">{{$item->parentJadwalHarian->waktu_mulai }}</td>
                                             <td class="text-center">{{$item->parentJadwalHarian->parentInstruktur->nama_instruktur }}</td>
                                             <td class="text-center">
                                                 <?php

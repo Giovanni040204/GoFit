@@ -30,7 +30,7 @@ class PresensiGymController extends Controller
         //Fungsi Simpan Data ke dalam Database
         PresensiGym::create([
             'nomor_presensi' => $bookingGym->nomor_bookingG,
-            'tanggal_presensi' => $tanggal,
+            'tanggal_presensi' => $tanggal->addHour(7),
             'id_member' => $bookingGym->id_member,
             'waktu' => $bookingGym->waktu
         ]);

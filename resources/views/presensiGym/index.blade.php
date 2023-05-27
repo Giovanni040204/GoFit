@@ -38,6 +38,7 @@
                                         <tr>
                                             <th class="text-center">Nomor Booking</th>
                                             <th class="text-center">Tanggal Booking</th>
+                                            <th class="text-center">Nomor Member</th>
                                             <th class="text-center">Nama Member</th>
                                             <th class="text-center">Slot Waktu</th>
                                             <th class="text-center">Aksi</th>
@@ -48,10 +49,11 @@
                                         <tr>
                                             <td class="text-center">{{$item->nomor_bookingG }}</td>
                                             <td class="text-center">{{$item->tanggal_bookingG }}</td>
+                                            <td class="text-center">{{$item->parentMember->nomor_member }}</td>
                                             <td class="text-center">{{$item->parentMember->nama_member }}</td>
                                             <td class="text-center">{{$item->waktu }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('presensiGym.store', $item->id) }}" class="btn btn-sm btn-warning">KONFIRMASI</a>
+                                                <a href="{{ route('presensiGym.store', $item->id) }}" class="btn btn-sm btn-primary">KONFIRMASI PRESENSI</a>
                                             </td>
                                             @empty
                                             <div class="alert alert-danger">
@@ -69,8 +71,9 @@
                                     <table class="table table-hover text-nowrap">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">Nomor Booking</th>
-                                                <th class="text-center">Tanggal Booking</th>
+                                                <th class="text-center">Nomor Presensi</th>
+                                                <th class="text-center">Tanggal Presensi</th>
+                                                <th class="text-center">Nomor Member</th>
                                                 <th class="text-center">Nama Member</th>
                                                 <th class="text-center">Slot Waktu</th>
                                                 <th class="text-center">Aksi</th>
@@ -81,6 +84,7 @@
                                             <tr>
                                                 <td class="text-center">{{$item->nomor_presensi }}</td>
                                                 <td class="text-center">{{$item->tanggal_presensi }}</td>
+                                                <td class="text-center">{{$item->parentMember->nomor_member}}</td>
                                                 <td class="text-center">{{$item->parentMember->nama_member}}</td>
                                                 <td class="text-center">{{$item->waktu }}</td>
                                                 <td class="text-center">
