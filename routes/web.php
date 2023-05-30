@@ -98,3 +98,12 @@ Route::get('presensiMember/cetak/{id}', '\App\Http\Controllers\PresensiMemberCon
 Route::resource('/presensiGym',\App\Http\Controllers\PresensiGymController::class);
 Route::get('presensiGym/store/{id}', '\App\Http\Controllers\PresensiGymController@store')->name('presensiGym.store');
 Route::get('presensiGym/cetak/{id}', '\App\Http\Controllers\PresensiGymController@cetak')->name('presensiGym.cetak');
+
+Route::resource('/aktivitasKelas',\App\Http\Controllers\AktivitasKelasController::class);
+Route::get('cetakLaporanAktivitasKelas/', '\App\Http\Controllers\AktivitasKelasController@cetak')->name('aktivitasKelas.cetak');
+
+Route::resource('/aktivitasGym',\App\Http\Controllers\AktivitasGymController::class);
+Route::get('cetakLaporanAktivitasGym/', '\App\Http\Controllers\AktivitasGymController@cetak')->name('aktivitasGym.cetak');
+
+Route::resource('/kinerjaInstruktur',\App\Http\Controllers\KinerjaInstrukturController::class);
+Route::get('cetakLaporanKinerjaInstruktur/', '\App\Http\Controllers\KinerjaInstrukturController@cetak')->name('kinerjaInstruktur.cetak');

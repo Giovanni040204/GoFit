@@ -69,8 +69,26 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('izinWeb') }}" class="nav-link text-dark">
-                                <i class="nav-icon fa-solid fa-calendar-days"></i>
+                                <i class="nav-icon fa-solid fa-slack"></i>
                                 <p>Mengelola Data Izin</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('aktivitasKelas') }}" class="nav-link text-dark">
+                                <i class="nav-icon fa-solid fa-paperclip"></i>
+                                <p>Aktivitas Kelas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('aktivitasGym') }}" class="nav-link text-dark">
+                                <i class="nav-icon fa-solid fa-shield"></i>
+                                <p>Aktivitas Gym</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('kinerjaInstruktur') }}" class="nav-link text-dark">
+                                <i class="nav-icon fa-solid fa-filter"></i>
+                                <p>Kinerja Instruktur</p>
                             </a>
                         </li>
                         <li class="nav-item">
