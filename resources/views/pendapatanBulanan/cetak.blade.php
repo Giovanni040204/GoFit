@@ -24,30 +24,34 @@
                     <h1 class="card-title"><b>GO-FIT</b></h1>
                     <p class="card-text"><small>Jl. Centralpark No. 10 Yogyakarta</small></p>
 
-                    <p class="card-text"><u><b>LAPORAN AKTIVITAS GYM BULANAN</b></u>
-                    <br><u>Bulan : {{$bulan}}  &emsp; Tahun : {{$tahun}}</u>
+                    <p class="card-text"><u><b>LAPORAN PENDAPATAN BULANAN</b></u>
+                    <br>PERIODE : {{$tahun}}
                     <br>Tanggal cetak : {{$date}}<br></p>
 
                     <table class="table table-hover text-nowrap" rules="all" border="1">
-                        <thead>
+                    <thead>
                             <tr>
-                                <th class="text-center">Tanggal</th>
-                                <th class="text-center">Jumlah Member</th>
+                                <th class="text-center">Bulan</th>
+                                <th class="text-center">Aktivasi</th>
+                                <th class="text-center">Deposit</th>
+                                <th class="text-center">Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($aktivitas as $item)
+                            @forelse ($pendapatan as $item)
                             <tr>
-                                <td class="text-center">{{$item->tanggal }}</td>
-                                <td class="text-center">{{$item->jumlah_member }}</td>
+                                <td class="text-center">{{$item->bulan}}</td>
+                                <td class="text-center">{{$item->aktivasi }}</td>
+                                <td class="text-center">{{$item->deposit }}</td>
+                                <td class="text-center">{{$item->total }}</td>
                             </tr>
                                 @empty
                             <div class="alert alert-danger">
-                                Data Aktivitas Belum Tersedia
+                                -
                             </div>
                             @endforelse
                             <tr>
-                                <td class="text-center"><b>TOTAL</b></td>
+                                <td class="text-center" colspan="3"><b>TOTAL</b></td>
                                 <td class="text-center"><b>{{$total}}</b></td>
                             </tr>
                         </tbody>

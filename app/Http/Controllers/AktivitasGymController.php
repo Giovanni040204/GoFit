@@ -10,12 +10,6 @@ class AktivitasGymController extends Controller
 {
     public function index(){
         $bulan = Carbon::now()->format('F');
-        $total = 0;
-        $aktivitas = AktivitasGym::all();
-        $cek = $aktivitas->count();
-        for($i=0;$i<$cek;$i++){
-            $total = $total + $aktivitas[$i]->jumlah_member;
-        }
         
         if($bulan == "January"){
             $bulan = "Januari";
@@ -41,6 +35,13 @@ class AktivitasGymController extends Controller
             $bulan = "November";
         }else if($bulan == "December"){
             $bulan = "Desember";
+        }
+
+        $total = 0;
+        $aktivitas = AktivitasGym::where('bulan','=',$bulan)->get();
+        $cek = $aktivitas->count();
+        for($i=0;$i<$cek;$i++){
+            $total = $total + $aktivitas[$i]->jumlah_member;
         }
 
         return view('aktivitasGym.index', compact('aktivitas','bulan','total'));
@@ -80,7 +81,7 @@ class AktivitasGymController extends Controller
         $date = $tanggal.' '.$bulan.' '.$tahun;
 
         $total = 0;
-        $aktivitas = AktivitasGym::all();
+        $aktivitas = AktivitasGym::where('bulan','=',$bulan)->get();
         $cek = $aktivitas->count();
         for($i=0;$i<$cek;$i++){
             $total = $total + $aktivitas[$i]->jumlah_member;

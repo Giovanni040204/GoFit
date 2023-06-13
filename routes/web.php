@@ -107,3 +107,6 @@ Route::get('cetakLaporanAktivitasGym/', '\App\Http\Controllers\AktivitasGymContr
 
 Route::resource('/kinerjaInstruktur',\App\Http\Controllers\KinerjaInstrukturController::class);
 Route::get('cetakLaporanKinerjaInstruktur/', '\App\Http\Controllers\KinerjaInstrukturController@cetak')->name('kinerjaInstruktur.cetak');
+
+Route::resource('/pendapatanBulanan',\App\Http\Controllers\PendapatanBulananController::class);
+Route::get('cetakLaporanPendapatanBulanan/', '\App\Http\Controllers\PendapatanBulananController@cetak')->name('pendapatanBulanan.cetak');

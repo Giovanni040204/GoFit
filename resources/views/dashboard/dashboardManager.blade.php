@@ -69,8 +69,14 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('izinWeb') }}" class="nav-link text-dark">
-                                <i class="nav-icon fa-solid fa-slack"></i>
+                                <i class="nav-icon fa-brands fa-slack"></i>
                                 <p>Mengelola Data Izin</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('pendapatanBulanan') }}" class="nav-link text-dark">
+                                <i class="nav-icon fa-brands fa-codepen"></i>
+                                <p>Pendapatan Bulanan</p>
                             </a>
                         </li>
                         <li class="nav-item">

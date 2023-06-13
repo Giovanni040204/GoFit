@@ -14,8 +14,8 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
-    {{-- <body onload="window.print();"> --}}
-    <body>
+    <body onload="window.print();">
+    {{-- <body> --}}
       <div class=" min-vh-100 d-flex align-items-center justify-content-center">
           <div class="card mb-3 bgc" style="max-width: 1000px;">
             <div class="border-dark mb-3">
